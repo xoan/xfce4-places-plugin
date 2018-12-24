@@ -98,7 +98,7 @@ pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     if(bookmarks == NULL)
         return;
-    
+
     DBG("destroy internal bookmarks");
 
     while(bookmarks != NULL){
@@ -128,13 +128,13 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
     GFile  *file;
     GFileInfo *fileinfo;
     GIcon  *icon;
- 
+
     pbuser_destroy_bookmarks(bookmark_group);
 
     fp = fopen(pbg_priv(bookmark_group)->filename, "r");
 
     if(G_UNLIKELY(fp == NULL)){
-        /* If opening the file failed, attempt to 
+        /* If opening the file failed, attempt to
            open the legacy file as a one-off. */
 
         legacy_filename = g_build_filename (g_get_home_dir (), ".gtk-bookmarks", NULL);
@@ -285,7 +285,7 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
     const GList *orig_ls      = pbg_priv(bookmark_group)->bookmarks;
     const PlacesBookmark *orig;
-    
+
     GList *clone_ls           = NULL;
     PlacesBookmark *clone;
 
@@ -313,7 +313,7 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             clone->uri_scheme     = orig->uri_scheme;
             clone->icon           = g_object_ref(orig->icon);
             clone->finalize       = pbuser_finalize_bookmark;
-    
+
             if(orig->uri_scheme == PLACES_URI_SCHEME_FILE) {
                 /* terminal action only works on native files. */
                 terminal              = places_create_open_terminal_action(clone);
@@ -322,7 +322,7 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             open                  = places_create_open_action(clone);
             clone->actions        = g_list_prepend(clone->actions, open);
             clone->primary_action = open;
-    
+
             clone_ls = g_list_prepend(clone_ls, clone);
         }
         orig_ls  = orig_ls->prev;
@@ -348,7 +348,7 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
     mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
     if(mtime != pbg_priv(bookmark_group)->loaded)
         goto pbuser_did_change;
-    
+
     /* see if any directories have been created or removed */
     bookmarks = pbg_priv(bookmark_group)->bookmarks;
     ret = FALSE;
@@ -389,9 +389,9 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 
 PlacesBookmarkGroup*
 places_bookmarks_user_create(void)
-{ 
+{
     PlacesBookmarkGroup *bookmark_group;
-    
+
     bookmark_group = places_bookmark_group_create();
     bookmark_group->get_bookmarks       = pbuser_get_bookmarks;
     bookmark_group->changed             = pbuser_changed;
@@ -399,7 +399,7 @@ places_bookmarks_user_create(void)
     bookmark_group->priv                = g_new0(PBUserData, 1);
 
     pbg_priv(bookmark_group)->filename = g_build_filename (g_get_user_config_dir (), "gtk-3.0", "bookmarks", NULL);
-    
+
     return bookmark_group;
 }
 

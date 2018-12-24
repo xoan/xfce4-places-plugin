@@ -88,7 +88,7 @@ places_load_terminal(const gchar *const_path)
         }else{
             path = (gchar*) const_path;
             /* (path_owner is FALSE) */
-            
+
         }
     }
 
@@ -198,7 +198,7 @@ places_show_error_dialog (const GError *error,
 
     /* set secondary text if an error is provided */
     if (G_LIKELY (error != NULL)){
-        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), 
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                                   "%s.", error->message);
     }
 

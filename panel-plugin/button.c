@@ -6,7 +6,7 @@
  *  functions shouldn't be used.
  *
  *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
- *  
+ *
  *  Some code adapted from libxfce4panel for the togglebutton configuration
  *    (xfce-panel-convenience.c)
  *    Copyright (c) 2006-2007 Jasper Huijsmans <jasper@xfce.org>
@@ -24,7 +24,7 @@
  *   - xfdesktop menu plugin
  *     desktop-menu-plugin.c - xfce4-panel plugin that displays the desktop menu
  *     Copyright (C) 2004 Brian Tarricone, <bjt23@cornell.edu>
- *  
+ *
  *   - launcher plugin
  *     launcher.c - (xfce4-panel plugin that opens programs)
  *     Copyright (c) 2005-2007 Jasper Huijsmans <jasper@xfce.org>
@@ -101,7 +101,7 @@ places_button_set_label(PlacesButton *self, const gchar *label)
 
     if (self->label_text != NULL)
         g_free(self->label_text);
-    
+
     self->label_text = g_strdup(label);
 
     places_button_resize(self);
@@ -198,11 +198,11 @@ static void
 places_button_class_init(PlacesButtonClass *klass)
 {
     GObjectClass *gobject_class;
-    
+
     gobject_class = G_OBJECT_CLASS(klass);
 
     gobject_class->dispose = places_button_dispose;
-  
+
     gobject_class->set_property = places_button_set_property;
     gobject_class->get_property = places_button_get_property;
 
@@ -330,7 +330,7 @@ places_button_resize_image(PlacesButton *self, gint new_size)
     }
 
     icon = self->pixbuf_factory(new_size);
-    
+
     if (G_UNLIKELY(icon == NULL)) {
         DBG("Could not load icon for button");
         places_button_destroy_image(self);

@@ -47,7 +47,7 @@ places_bookmark_action_destroy(PlacesBookmarkAction *act)
 
     if(act->finalize != NULL)
         act->finalize(act);
-    
+
     g_free(act);
 }
 
@@ -115,7 +115,7 @@ places_bookmark_destroy(PlacesBookmark *bookmark)
 
     if(bookmark->finalize != NULL)
         bookmark->finalize(bookmark);
-    
+
     g_free(bookmark);
 }
 

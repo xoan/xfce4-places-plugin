@@ -52,7 +52,7 @@ typedef struct
 #endif
 
 } PBSysData;
- 
+
 static void
 pbsys_finalize_desktop_bookmark(PlacesBookmark *bookmark)
 {
@@ -158,7 +158,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->finalize      = pbsys_finalize_trash_bookmark;;
 
     /* Try for an icon to indicate whether trash is empty or not */
-    
+
     trash_info = g_file_query_info(pbg_priv(bookmark_group)->trash_path,
                     "trash::*",
                     G_FILE_QUERY_INFO_NONE,
@@ -228,7 +228,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 
     if(!pbg_priv(bookmark_group)->check_changed)
         return FALSE;
-    
+
     /* Check if desktop now exists and didn't before */
     desktop_dir = pbsys_desktop_dir();
     if(!exo_str_is_equal(desktop_dir, pbg_priv(bookmark_group)->desktop_dir)){
@@ -245,7 +245,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
                     NULL, NULL);
     trash_is_empty = pbsys_trash_is_empty(trash_info);
     g_object_unref(trash_info);
-    
+
     if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
         return TRUE;
 #endif
@@ -270,19 +270,19 @@ PlacesBookmarkGroup*
 places_bookmarks_system_create(void)
 {
     PlacesBookmarkGroup *bookmark_group;
-    
+
     bookmark_group = places_bookmark_group_create();
     bookmark_group->get_bookmarks = pbsys_get_bookmarks;
     bookmark_group->changed       = pbsys_changed;
     bookmark_group->finalize      = pbsys_finalize;
     bookmark_group->priv          = g_new0(PBSysData, 1);
-    
+
 #if TRASH
     pbg_priv(bookmark_group)->trash_path = g_file_new_for_uri("trash:///");
 #endif
 
     return bookmark_group;
 }
-   
+
 
 /* vim: set ai et tabstop=4: */

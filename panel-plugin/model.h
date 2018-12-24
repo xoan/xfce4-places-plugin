@@ -50,7 +50,7 @@ places_bookmark_action_call(PlacesBookmarkAction*);
 typedef enum
 {
     PLACES_URI_SCHEME_NONE=0,
-    PLACES_URI_SCHEME_FILE, 
+    PLACES_URI_SCHEME_FILE,
     PLACES_URI_SCHEME_TRASH,
     PLACES_URI_SCHEME_REMOTE
 } places_uri_scheme;
@@ -60,7 +60,7 @@ struct _PlacesBookmark
 {
     gchar                 *label;          /* must not be NULL */
     gchar                 *uri;            /* may be NULL */
-    places_uri_scheme      uri_scheme;    
+    places_uri_scheme      uri_scheme;
     GIcon                 *icon;           /* may be NULL */
     PlacesBookmarkAction  *primary_action; /* may be NULL */
     gboolean               force_gray;

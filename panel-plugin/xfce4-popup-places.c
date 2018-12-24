@@ -44,7 +44,7 @@ plugin_check_is_running (GtkWidget *widget,
     Atom                selection_atom;
 
     gscreen = gtk_widget_get_screen (widget);
-    
+
     g_snprintf (selection_name, 256,
                 XFCE_PLACES_SELECTION"%d",
                 gdk_screen_get_number (gscreen));

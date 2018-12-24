@@ -34,13 +34,13 @@
 /**
  * Cleans up resources.
  */
-static void 
+static void
 places_finalize(XfcePanelPlugin *plugin, PlacesView *view)
 {
     DBG("Finalize: %s", PLUGIN_NAME);
     g_assert(plugin != NULL);
     g_assert(view != NULL);
-   
+
     /* Finalize view */
     places_view_finalize(view);
 }
@@ -48,21 +48,21 @@ places_finalize(XfcePanelPlugin *plugin, PlacesView *view)
 /**
  * Initializes the plugin.
  */
-static void 
+static void
 places_construct(XfcePanelPlugin *plugin)
 {
     PlacesView *view;
 
     DBG("Construct: %s", PLUGIN_NAME);
-   
+
     /* Set up i18n */
-    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8"); 
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
     /* Initialize view */
     view = places_view_init(plugin);
 
     /* Connect the finalize callback */
-    g_signal_connect(plugin, "free-data", 
+    g_signal_connect(plugin, "free-data",
                      G_CALLBACK(places_finalize), view);
 
     DBG("done");
